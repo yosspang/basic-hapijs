@@ -61,9 +61,18 @@ server.route([
             console.log(request.payload); //cek parameter inputan form
             let panjangRequest= parseInt(request.payload.panjang);
             let lebarRequest = parseInt(request.payload.lebar);
-            let hasil = panjangRequest * lebarRequest;
-            const data = {data: 'hello detail users',...request.payload,hasilPerhitungan: hasil}//bikin response berbentuk JSON
-            return h.response(data).code(200) //return output JSON
+            let hasilLuas = panjangRequest * lebarRequest;
+            const contohArray={
+                panjang: panjangRequest,
+                lebar: lebarRequest,
+                hasil: hasilLuas
+            }   
+            const data = {
+                statusCode: 200,
+                info: 'hitung luas persegi',
+                content: contohArray
+            }//bikin response berbentuk JSON
+            return h.response(data).code(data.statusCode) //return output JSON
         }
     },
     {
@@ -85,8 +94,8 @@ server.route([
             }else if((input_num%2)!=0){
                 status = 'angka input adalah ganjil';
             };
-            const data = {data: 'tentukan ganjil genap',...request.payload,keterangan: status}//bikin response berbentuk JSON
-            return h.response(data).code(200) //return output JSON
+            const data = {statusCode: 200 ,data: 'tentukan ganjil genap',...request.payload,keterangan: status}//bikin response berbentuk JSON
+            return h.response(data).code(data.statusCode) //return output JSON
         }
     }
 ])
