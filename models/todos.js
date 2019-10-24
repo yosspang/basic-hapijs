@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     dateActivity: DataTypes.DATE,
-    completed: DataTypes.BOOLEAN
+    completed: DataTypes.BOOLEAN,
+    email:DataTypes.STRING
   }, {});
   Todos.associate = function(models) {
     // associations can be defined here

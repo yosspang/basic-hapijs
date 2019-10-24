@@ -28,14 +28,15 @@ const todosHandler = async (request,h)=> {
 
 const createTodoHandler = async (request,h) => {
     try {
-        const {titleReq, descriptionReq, userIdReq, completedReq, dateReq} = request.payload;
+        const {titleReq, descriptionReq, userIdReq, completedReq, dateReq,emailReq} = request.payload;
         console.log(request.payload);
         const todo = await Models.Todos.create({
             title: titleReq,
             description: descriptionReq,
             userId: userIdReq,
             completed: completedReq,
-            dateActivity: dateReq
+            dateActivity: dateReq,
+            email: emailReq
         })
         return{
             data: todo,
@@ -53,13 +54,14 @@ const createTodoHandler = async (request,h) => {
 const updateTodoHandler = async (request, h) => {
     try{
         const todo_id = request.params.id;
-        const { titleReq, descriptionReq, completedReq, dateReq, userIdReq} = request.payload;
+        const { titleReq, descriptionReq, completedReq, dateReq, userIdReq, emailReq} = request.payload;
         const todos = await Models.Todos.update({
             title: titleReq,
             description: descriptionReq,
             userId: userIdReq,
             completed: completedReq,
-            dateActivity: dateReq
+            dateActivity: dateReq,
+            email: emailReq
         },{
             where:{
                 id: todo_id
@@ -112,7 +114,8 @@ module.exports = [
                     descriptionReq: Joi.required(), 
                     userIdReq: Joi.required(), 
                     completedReq: Joi.number().required().max(1).min(0),
-                    dateReq: Joi.date().required()
+                    dateReq: Joi.date().required(),
+                    emailReq: Joi.string().email().required()
                 }
             }
         },
@@ -127,7 +130,8 @@ module.exports = [
                     descriptionReq: Joi.required(), 
                     userIdReq: Joi.required(), 
                     completedReq: Joi.number().required().max(1).min(0),
-                    dateReq: Joi.date().required()
+                    dateReq: Joi.date().required(),
+                    emailReq: Joi.string().email().required()
                 }
             }
         },
