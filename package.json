@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^18.4.0",
+    "@hapi/hapi": "^19.1.1",
     "@hapi/joi": "15.1.1",
     "mysql2": "^1.7.0",
     "sequelize": "^5.21.1"
